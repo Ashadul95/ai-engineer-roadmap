@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101522">
+  <meta name="description" content="An interactive, six-month AI engineering and AI systems architecture roadmap for an experienced software engineer.">
+  <title>AI Engineer Roadmap | 24-Week Career Plan</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c1019;
+      --panel: #141a27;
+      --panel-2: #1a2231;
+      --line: #293247;
+      --text: #edf2fb;
+      --muted: #9daac0;
+      --mint: #78e2c2;
+      --blue: #87b9ff;
+      --violet: #c3a5ff;
+      --amber: #ffce82;
+      --red: #ff9999;
+      --radius: 18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 82% -10%, rgba(87, 118, 195, .22), transparent 38rem),
+        radial-gradient(ellipse at -10% 12%, rgba(73, 185, 157, .11), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--mint); }
+    button, select { font: inherit; }
+    button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible {
+      outline: 3px solid var(--mint); outline-offset: 3px;
+    }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin-inline: auto; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 18px 0; border-bottom: 1px solid rgba(157,170,192,.15);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-size: .9rem; font-weight: 750; letter-spacing: .02em; }
+    .brand-mark {
+      display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px;
+      background: linear-gradient(140deg, #78e2c2, #87b9ff); color: #0b1420; font-weight: 900;
+    }
+    .toplinks { display: flex; flex-wrap: wrap; gap: 18px; font-size: .88rem; }
+    .toplinks a { color: var(--muted); text-decoration: none; }
+    .toplinks a:hover { color: var(--text); }
+    .hero { padding: 68px 0 42px; }
+    .eyebrow {
+      display: inline-flex; gap: 8px; align-items: center; color: var(--mint);
+      border: 1px solid rgba(120,226,194,.28); background: rgba(120,226,194,.07);
+      border-radius: 999px; padding: 5px 12px; font-size: .78rem; font-weight: 750;
+      text-transform: uppercase; letter-spacing: .09em;
+    }
+    h1 { max-width: 820px; margin: 19px 0 14px; font-size: clamp(2.5rem, 6vw, 4.7rem); line-height: 1.03; letter-spacing: -.055em; }
+    h1 span { color: var(--mint); }
+    .hero-copy { max-width: 760px; color: #b7c2d5; font-size: clamp(1.02rem, 2vw, 1.18rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+      padding: 10px 16px; border: 1px solid var(--line); border-radius: 12px;
+      color: var(--text); text-decoration: none; font-weight: 700; background: var(--panel);
+      cursor: pointer;
+    }
+    .button.primary { border-color: transparent; background: var(--mint); color: #0b1720; }
+    .button:hover { transform: translateY(-1px); }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 34px; }
+    .stat { border: 1px solid var(--line); background: rgba(20,26,39,.82); border-radius: 14px; padding: 14px 16px; }
+    .stat strong { display: block; font-size: 1.25rem; }
+    .stat span { color: var(--muted); font-size: .82rem; }
+    main { padding-bottom: 70px; }
+    section { scroll-margin-top: 24px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin: 47px 0 18px; }
+    .section-head h2 { margin: 0; font-size: clamp(1.65rem, 4vw, 2.35rem); letter-spacing: -.035em; }
+    .section-head p { max-width: 540px; margin: 5px 0 0; color: var(--muted); }
+    .callout {
+      display: grid; grid-template-columns: auto 1fr; gap: 14px; padding: 18px;
+      border: 1px solid rgba(255,206,130,.28); background: rgba(255,206,130,.07);
+      border-radius: var(--radius); margin-top: 24px;
+    }
+    .callout .icon { font-size: 1.3rem; }
+    .callout p { margin: 3px 0 0; color: #d3d9e3; }
+    .callout strong { color: var(--amber); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .card { border: 1px solid var(--line); background: rgba(20,26,39,.9); border-radius: var(--radius); padding: 20px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.1rem; }
+    .card p { margin: 0; color: var(--muted); }
+    .card ul, .card ol { margin: 12px 0 0; padding-left: 21px; color: #c4cede; }
+    .card li + li { margin-top: 6px; }
+    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 3px 9px; font-size: .75rem; font-weight: 750; background: rgba(135,185,255,.12); color: var(--blue); }
+    .progress-card { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 16px; }
+    .progress-title { font-weight: 750; }
+    .progress-meta { color: var(--muted); font-size: .86rem; }
+    .progress-track { height: 10px; background: #252e40; border-radius: 99px; overflow: hidden; margin-top: 10px; }
+    .progress-fill { width: 0; height: 100%; background: linear-gradient(90deg, var(--mint), var(--blue)); transition: width .25s ease; }
+    .progress-number { color: var(--mint); font-weight: 800; font-size: 1.2rem; }
+    .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 18px 0; }
+    .toolbar label { color: var(--muted); font-size: .88rem; }
+    select { color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
+    .small-button { color: var(--muted); border: 1px solid var(--line); background: transparent; border-radius: 10px; padding: 8px 11px; cursor: pointer; }
+    .small-button:hover { color: var(--text); border-color: #53617b; }
+    .phase { margin: 24px 0 30px; }
+    .phase-heading { display: flex; align-items: center; gap: 11px; margin-bottom: 13px; }
+    .phase-number { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; font-weight: 850; color: #101522; }
+    .phase h3 { margin: 0; font-size: 1.27rem; }
+    .phase-heading p { margin: 1px 0 0; color: var(--muted); font-size: .88rem; }
+    .phase:nth-of-type(1) .phase-number { background: var(--mint); }
+    .phase:nth-of-type(2) .phase-number { background: var(--blue); }
+    .phase:nth-of-type(3) .phase-number { background: var(--violet); }
+    .phase:nth-of-type(4) .phase-number { background: var(--amber); }
+    .weeks { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+    .week {
+      border: 1px solid var(--line); background: rgba(20,26,39,.88); border-radius: 16px;
+      padding: 17px; transition: border-color .2s, background .2s;
+    }
+    .week.done { border-color: rgba(120,226,194,.62); background: rgba(33,67,65,.32); }
+    .week-top { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+    .week-label { color: var(--mint); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .week h4 { margin: 3px 0 0; font-size: 1.04rem; }
+    .week > p { margin: 9px 0; color: #b4bfd1; font-size: .9rem; }
+    .deliverable { border-left: 2px solid var(--mint); padding-left: 10px; color: #dfe8f3; font-size: .85rem; }
+    .week label { display: flex; align-items: center; gap: 8px; margin-top: 13px; font-size: .85rem; color: var(--muted); cursor: pointer; }
+    input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--mint); cursor: pointer; }
+    .resource-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 11px; }
+    .resource-list a { padding: 4px 8px; border-radius: 8px; background: rgba(135,185,255,.08); font-size: .78rem; text-decoration: none; }
+    .resource-list a::after { content: " ↗"; font-size: .75em; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .project { display: flex; flex-direction: column; min-height: 100%; }
+    .project .pill { align-self: flex-start; margin-bottom: 10px; }
+    .project h3 { margin-bottom: 7px; }
+    .project ul { font-size: .9rem; }
+    .project .deliverable { margin-top: auto; padding-top: 9px; }
+    .architecture { overflow-x: auto; padding: 18px; }
+    .flow { display: flex; align-items: stretch; justify-content: center; gap: 8px; min-width: 730px; }
+    .flow-step { flex: 1; display: flex; flex-direction: column; justify-content: center; min-height: 92px; padding: 12px; border: 1px solid #34415a; border-radius: 13px; background: var(--panel-2); text-align: center; }
+    .flow-step strong { font-size: .88rem; }
+    .flow-step span { color: var(--muted); font-size: .75rem; margin-top: 4px; }
+    .arrow { align-self: center; color: var(--mint); font-size: 1.25rem; }
+    .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 18px; padding: 0; list-style: none; }
+    .checklist label { display: flex; gap: 9px; align-items: flex-start; cursor: pointer; color: #cbd4e2; }
+    .resources { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .resource-group h3 { color: var(--mint); font-size: .95rem; }
+    .resource-group ul { list-style: none; padding: 0; margin: 0; }
+    .resource-group li + li { margin-top: 9px; }
+    .resource-group a { font-weight: 650; }
+    .resource-group small { display: block; color: var(--muted); font-size: .78rem; }
+    .schedule { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+    .day { border: 1px solid var(--line); border-radius: 13px; padding: 12px; background: var(--panel); }
+    .day strong { display: block; color: var(--blue); font-size: .84rem; }
+    .day span { color: var(--muted); font-size: .78rem; }
+    footer { border-top: 1px solid var(--line); padding: 26px 0 36px; color: var(--muted); font-size: .86rem; }
+    footer p { margin: 5px 0; }
+    @media (max-width: 800px) {
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .project-grid, .resources { grid-template-columns: 1fr 1fr; }
+      .schedule { grid-template-columns: repeat(4,1fr); }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 24px, 1120px); }
+      .topbar { align-items: flex-start; }
+      .toplinks { gap: 8px 12px; justify-content: flex-end; font-size: .78rem; }
+      .hero { padding-top: 47px; }
+      .two-col, .weeks, .project-grid, .resources, .checklist { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .schedule { grid-template-columns: repeat(2,1fr); }
+      .progress-card { grid-template-columns: 1fr auto; }
+    }
+    @media print {
+      :root { color-scheme: light; --bg: white; --panel: white; --panel-2: #f5f7fa; --text: #172033; --muted: #4b5565; --line: #d5dbe5; }
+      body { background: white; color: #172033; }
+      .toplinks, .hero-actions, .toolbar, .week label, footer .print-hide { display: none !important; }
+      .wrap { width: 100%; }
+      .week, .card, .stat, .day { break-inside: avoid; background: white; }
+      a { color: #245c9e; }
+      .hero { padding-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="#top" style="color:inherit;text-decoration:none">
+        <span class="brand-mark">AI</span><span>FIELD GUIDE · 24 WEEKS</span>
+      </a>
+      <nav class="toplinks" aria-label="Main navigation">
+        <a href="#roadmap">Roadmap</a><a href="#projects">Projects</a><a href="#architecture">Architecture</a><a href="#resources">Resources</a>
+      </nav>
+    </header>
+
+    <div id="top" class="hero">
+      <span class="eyebrow">For an experienced software engineer specializing in AI</span>
+      <h1>Build toward <span>senior-level AI</span> capability.</h1>
+      <p class="hero-copy">A demanding six-month foundation, followed by the deeper production practice expected of senior AI engineers and architects. Build systems, measure them, and learn to defend your design decisions in interviews and client conversations.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#roadmap">Start the 24-week path ↓</a>
+        <button class="button" type="button" onclick="window.print()">Print / save as PDF</button>
+      </div>
+      <div class="stats" aria-label="Roadmap summary">
+        <div class="stat"><strong>24 weeks</strong><span>Foundation and portfolio sprint</span></div>
+        <div class="stat"><strong>12–15 hrs</strong><span>Suggested weekly commitment</span></div>
+        <div class="stat"><strong>3 projects</strong><span>Portfolio proof, not just courses</span></div>
+        <div class="stat"><strong>1 specialty</strong><span>Pick one cloud to go deep on</span></div>
+      </div>
+      <div class="callout">
+        <div class="icon" aria-hidden="true">⚠</div>
+        <div><strong>Be ambitious about skills; be accurate about experience.</strong>
+          <p>A six-month study plan can build substantial knowledge and interview readiness, but it cannot honestly turn into five years of AI employment or replace years of owning production systems. Don’t hide your software-engineering history or claim AI tenure you did not have. Present your real total engineering experience and date your AI work accurately; interviewers can probe production decisions, impact, and ownership in detail.</p>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section id="start">
+        <div class="section-head">
+          <div><h2>How to use this path</h2><p>Use your engineering strengths. Don’t spend six months passively watching courses.</p></div>
+        </div>
+        <div class="two-col">
+          <article class="card">
+            <h3>Your advantage</h3>
+            <p>You already know how to build software. Keep using your strongest language for APIs, testing, Git, and deployment. Add Python because it is widely used in the AI ecosystem; you don’t need to abandon your current stack.</p>
+            <ul><li>Learn the minimum math needed to reason about models and metrics.</li><li>Build a small, testable increment every week.</li><li>Write down trade-offs, costs, risks, and failure modes.</li></ul>
+          </article>
+          <article class="card">
+            <h3>Choose a focused stack</h3>
+            <p>Suggested default: Python + FastAPI, PostgreSQL with pgvector, Docker, one hosted model API, and one cloud provider. Swap components if your target employers use a different stack.</p>
+            <ul><li>Pick AWS, Azure, or Google Cloud by week 1 and stay with it for the capstone.</li><li>Use managed model APIs first; learn self-hosting only when a requirement justifies it.</li><li>Check each provider’s pricing, data handling, and regional availability before using real client data.</li></ul>
+          </article>
+        </div>
+        <div class="section-head"><div><h2>Weekly rhythm</h2><p>Protect a sustainable block of time; adjust this template around work and life.</p></div></div>
+        <div class="schedule" aria-label="Suggested weekly study schedule">
+          <div class="day"><strong>Mon</strong><span>1 h · Learn a concept</span></div>
+          <div class="day"><strong>Tue</strong><span>1.5 h · Code a small exercise</span></div>
+          <div class="day"><strong>Wed</strong><span>1 h · Read docs / notes</span></div>
+          <div class="day"><strong>Thu</strong><span>1.5 h · Build project</span></div>
+          <div class="day"><strong>Fri</strong><span>30 min · Review and plan</span></div>
+          <div class="day"><strong>Sat</strong><span>4–6 h · Deep project work</span></div>
+          <div class="day"><strong>Sun</strong><span>2–3 h · Tests, demo, write-up</span></div>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <div class="section-head">
+          <div><h2>Your 24-week roadmap</h2><p>Each week has a concrete output. Check it off when you can demonstrate the result—not just when you finish a video.</p></div>
+        </div>
+        <div class="card progress-card" aria-live="polite">
+          <div>
+            <div class="progress-title">Your saved progress</div>
+            <div id="progressText" class="progress-meta">0 of 24 weekly milestones complete</div>
+            <div class="progress-track" role="progressbar" aria-label="Roadmap completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressFill" class="progress-fill"></div></div>
+          </div>
+          <div id="progressNumber" class="progress-number">0%</div>
+        </div>
+        <div class="toolbar">
+          <label for="hours">Time available:</label>
+          <select id="hours" aria-label="Weekly hours available">
+            <option value="8">8 hours / week (stretch the plan)</option>
+            <option value="12" selected>12 hours / week (recommended)</option>
+            <option value="15">15 hours / week (recommended)</option>
+            <option value="20">20+ hours / week (more project depth)</option>
+          </select>
+          <button id="resetProgress" type="button" class="small-button">Reset checkmarks</button>
+          <span id="hoursNote" class="progress-meta">At 12–15 hours/week, aim for one milestone each week.</span>
+        </div>
+        <div id="roadmapContent"></div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head">
+          <div><h2>Portfolio: build evidence, not demos</h2><p>Three projects that show you can reason about quality, safety, and operations—not only call a model.</p></div>
+        </div>
+        <div class="project-grid">
+          <article class="card project">
+            <span class="pill">Weeks 1–8 · Foundation</span><h3>1. ML prediction service</h3>
+            <p>Train a small model on a public dataset and expose it as a tested API. Focus on the full lifecycle, not model novelty.</p>
+            <ul><li>Baseline, train/validation/test split, useful metrics</li><li>Input validation, versioned model artifact, API tests</li><li>Docker image, CI, simple latency and error logging</li></ul>
+            <div class="deliverable"><strong>Publish:</strong> repo, reproducible instructions, model card, short demo, and a note on limitations.</div>
+          </article>
+          <article class="card project">
+            <span class="pill">Weeks 9–16 · LLM systems</span><h3>2. Grounded knowledge assistant</h3>
+            <p>Build a retrieval-augmented generation (RAG) app over public or synthetic documents. Show evidence and abstain when evidence is weak.</p>
+            <ul><li>Document ingestion, chunking, embeddings, retrieval</li><li>Citations, access boundaries, prompt-injection-aware design</li><li>Question set, retrieval and answer quality evaluation</li></ul>
+            <div class="deliverable"><strong>Publish:</strong> architecture diagram, evaluation set and results, known failure cases, and cost per test run.</div>
+          </article>
+          <article class="card project">
+            <span class="pill">Weeks 17–24 · Production</span><h3>3. Deployable client-style AI service</h3>
+            <p>Turn project 2 into a service someone else can operate. Use a cloud account only with budget alerts and least-privilege access.</p>
+            <ul><li>Auth, quotas, secrets management, privacy boundaries</li><li>CI/CD, health checks, dashboards, traces, rollback plan</li><li>Load test, failure drills, cost and incident runbook</li></ul>
+            <div class="deliverable"><strong>Publish:</strong> deployment guide, threat/risk notes, SLO proposal, runbook, and a 5-minute walkthrough.</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture">
+        <div class="section-head">
+          <div><h2>Learn to design the whole system</h2><p>A useful AI architect can explain each boundary, failure mode, and cost—not just draw boxes.</p></div>
+        </div>
+        <div class="card architecture">
+          <div class="flow" aria-label="Example production AI system flow">
+            <div class="flow-step"><strong>Client / UI</strong><span>Auth · consent</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>API gateway</strong><span>Limits · validation</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>App service</strong><span>Policy · orchestration</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Model / tools</strong><span>Timeout · fallback</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Evaluation &amp; telemetry</strong><span>Quality · cost · traces</span></div>
+          </div>
+          <div class="flow" aria-label="Knowledge retrieval flow" style="margin-top:10px">
+            <div class="flow-step"><strong>Trusted sources</strong><span>Permission-aware ingest</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Parse &amp; chunk</strong><span>Version · remove secrets</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Index</strong><span>Vector + keyword</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Retrieve &amp; filter</strong><span>Access control · rerank</span></div><span class="arrow">→</span>
+            <div class="flow-step"><strong>Evidence-backed answer</strong><span>Citations · abstain</span></div>
+          </div>
+        </div>
+        <div class="two-col" style="margin-top:14px">
+          <article class="card"><h3>Architecture questions to ask</h3><ul><li>What user problem needs AI, and what is the non-AI baseline?</li><li>What data is allowed to leave the system? Where is it stored and for how long?</li><li>What quality threshold, latency, availability, and spend are acceptable?</li><li>What happens on timeout, provider outage, bad retrieval, or unsafe input?</li><li>How will we evaluate changes and roll back a regression?</li></ul></article>
+          <article class="card"><h3>Production habits to demonstrate</h3><ul><li>Keep secrets out of code; use managed secret storage and least privilege.</li><li>Log useful metadata, not raw sensitive prompts by default.</li><li>Set timeouts, retries with limits, quotas, and budget alerts.</li><li>Test access controls and prompt-injection scenarios; treat retrieved text as untrusted input.</li><li>Document owners, runbooks, model/provider versions, and data retention.</li></ul></article>
+        </div>
+      </section>
+
+      <section id="job-ready">
+        <div class="section-head">
+          <div><h2>Senior-interview preparation</h2><p>Use the 24-week path to build evidence, then keep deepening these capabilities through real projects and production ownership.</p></div>
+        </div>
+        <div class="two-col">
+          <article class="card">
+            <h3>What senior AI interviews may test</h3>
+            <ul>
+              <li><strong>ML fundamentals:</strong> data leakage, drift, calibration, class imbalance, baselines, offline vs online metrics, and when not to use ML.</li>
+              <li><strong>LLM systems:</strong> retrieval quality, chunking, hybrid search, reranking, evaluation design, hallucination controls, model selection, and fine-tuning trade-offs.</li>
+              <li><strong>Distributed systems:</strong> queues, concurrency, backpressure, idempotency, caching, consistency, rate limits, retries, and graceful degradation.</li>
+              <li><strong>Production ML:</strong> reproducible pipelines, model/data versioning, rollout and rollback, drift monitoring, incident response, and ownership boundaries.</li>
+              <li><strong>Security and governance:</strong> identity, tenant isolation, privacy, retention, threat modeling, auditability, human review, and responsible AI constraints.</li>
+              <li><strong>Consulting judgment:</strong> client discovery, requirements, build-vs-buy, phased delivery, risk communication, estimates, and measurable outcomes.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Practice loop for the next 6–18 months</h3>
+            <ol>
+              <li>Pick one target job description each week and map its requirements to evidence you can truthfully show.</li>
+              <li>Do one timed coding exercise, one ML/LLM fundamentals review, and one system-design case every week.</li>
+              <li>For each design, cover requirements, data flow, scale, quality metrics, privacy, failure modes, cost, deployment, and operations.</li>
+              <li>Get peer review; improve a project from evaluation or operational feedback instead of starting another tutorial project.</li>
+              <li>Seek real AI project ownership at work or through a clearly disclosed portfolio/client project; record your actual contribution and dates.</li>
+            </ol>
+          </article>
+        </div>
+        <div class="section-head">
+          <div><h2>Before applying or pitching a client</h2><p>Use this as your readiness gate. Be clear about what you built, what you owned, and what you have not operated in production.</p></div>
+        </div>
+        <div class="card">
+          <ul id="readinessList" class="checklist">
+            <li><label><input type="checkbox" data-key="ready-1"> I can explain a model's limits, evaluation metrics, and when a non-AI solution is better.</label></li>
+            <li><label><input type="checkbox" data-key="ready-2"> I can build and test an API around a model and deploy it using my chosen cloud.</label></li>
+            <li><label><input type="checkbox" data-key="ready-3"> I have a repeatable evaluation dataset and can show quality/cost/latency trade-offs.</label></li>
+            <li><label><input type="checkbox" data-key="ready-4"> I can describe data permissions, privacy, retention, access control, and abuse risks.</label></li>
+            <li><label><input type="checkbox" data-key="ready-5"> My projects include setup steps, architecture, tests, limitations, and a working demo.</label></li>
+            <li><label><input type="checkbox" data-key="ready-6"> I have practiced system design, Python/API coding, debugging, and project storytelling.</label></li>
+            <li><label><input type="checkbox" data-key="ready-7"> I can estimate token/inference costs and explain how I would monitor and control spend.</label></li>
+            <li><label><input type="checkbox" data-key="ready-8"> I have tailored my CV and portfolio to real job descriptions and asked for feedback.</label></li>
+          </ul>
+        </div>
+        <div class="two-col" style="margin-top:14px">
+          <article class="card"><h3>Target roles thoughtfully</h3><p>Search for <strong>AI Engineer</strong>, <strong>Applied AI Engineer</strong>, <strong>LLM Engineer</strong>, <strong>ML Engineer</strong>, and <strong>AI Platform Engineer</strong>. For senior/architect openings at large consultancies, check the exact expectations for years, client delivery, cloud, industry, and production ownership. Apply when your evidence fits; use interviews to learn where to grow.</p></article>
+          <article class="card"><h3>Present your history honestly</h3><p>Keep your real employment title and dates. A truthful profile can emphasize AI specialization, for example: <strong>“Software Engineer (May 2022–present) | Focus: AI/LLM systems”</strong>, then list AI work with its actual dates, scope, outcomes, and your contribution. Don’t label study or personal projects as employment or client production experience.</p></article>
+        </div>
+      </section>
+
+      <section id="resources">
+        <div class="section-head">
+          <div><h2>Curated learning resources</h2><p>Prefer official documentation and courses with hands-on exercises. Most links are free to read; some hosted services can incur charges.</p></div>
+        </div>
+        <div class="resources">
+          <article class="card resource-group">
+            <h3>Python, data &amp; ML</h3>
+            <ul>
+              <li><a href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">Python tutorial</a><small>Official Python language fundamentals</small></li>
+              <li><a href="https://numpy.org/learn/" target="_blank" rel="noopener">NumPy learning</a><small>Arrays and numerical operations</small></li>
+              <li><a href="https://pandas.pydata.org/docs/getting_started/" target="_blank" rel="noopener">pandas getting started</a><small>Data analysis and tabular workflows</small></li>
+              <li><a href="https://scikit-learn.org/stable/getting_started.html" target="_blank" rel="noopener">scikit-learn getting started</a><small>Classical ML and evaluation workflows</small></li>
+              <li><a href="https://pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch tutorials</a><small>Deep learning basics and model training</small></li>
+              <li><a href="https://huggingface.co/learn" target="_blank" rel="noopener">Hugging Face Learn</a><small>Transformers, datasets, and practical NLP</small></li>
+            </ul>
+          </article>
+          <article class="card resource-group">
+            <h3>LLM apps &amp; evaluation</h3>
+            <ul>
+              <li><a href="https://platform.openai.com/docs/overview" target="_blank" rel="noopener">OpenAI API docs</a><small>One example of a hosted model API; compare alternatives</small></li>
+              <li><a href="https://fastapi.tiangolo.com/tutorial/" target="_blank" rel="noopener">FastAPI tutorial</a><small>Build typed Python web APIs</small></li>
+              <li><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener">Prompt Engineering Guide</a><small>Patterns and concepts; verify with experiments</small></li>
+              <li><a href="https://platform.openai.com/docs/guides/evals" target="_blank" rel="noopener">Evaluation guide</a><small>Design repeatable model evaluations</small></li>
+              <li><a href="https://www.langchain.com/" target="_blank" rel="noopener">LangChain</a><small>Optional orchestration framework; learn fundamentals first</small></li>
+              <li><a href="https://ollama.com/blog/embedding-models" target="_blank" rel="noopener">Ollama embeddings</a><small>Local embedding experiments (your current starting point)</small></li>
+            </ul>
+          </article>
+          <article class="card resource-group">
+            <h3>Production, cloud &amp; safety</h3>
+            <ul>
+              <li><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Docker getting started</a><small>Build and run containerized services</small></li>
+              <li><a href="https://developer.hashicorp.com/terraform/tutorials" target="_blank" rel="noopener">Terraform tutorials</a><small>Infrastructure as code</small></li>
+              <li><a href="https://docs.aws.amazon.com/bedrock/" target="_blank" rel="noopener">Amazon Bedrock docs</a><small>AWS managed foundation models</small></li>
+              <li><a href="https://learn.microsoft.com/azure/ai-services/" target="_blank" rel="noopener">Azure AI services</a><small>Microsoft cloud AI services</small></li>
+              <li><a href="https://cloud.google.com/vertex-ai/docs" target="_blank" rel="noopener">Vertex AI docs</a><small>Google Cloud ML platform</small></li>
+              <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM apps</a><small>Threat awareness; pair with product-specific controls</small></li>
+            </ul>
+          </article>
+        </div>
+        <div class="callout">
+          <div class="icon" aria-hidden="true">ⓘ</div>
+          <div><strong>Cost and data safety:</strong><p>Check current provider pricing, terms, quotas, and data retention before you send anything sensitive. Start with public or synthetic data, set a spending limit, and never put API keys in browser code or a public repository. Cloud services and pricing change; use the linked official docs as the source of truth.</p></div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p><strong>Progress is stored only in this browser</strong> using local storage; this page sends no progress data anywhere.</p>
+      <p>Roadmap version: November 2026 · Treat it as a practical guide, adapt it to target job descriptions, and verify current provider documentation.</p>
+    </footer>
+  </div>
+  <script>
+    const phases = [
+      {
+        title: "Software-to-AI foundations", period: "Month 1 · Python, data, and problem framing",
+        weeks: [
+          ["Set up your AI engineering workspace", "Install Python, create a virtual environment, use Git branches, and learn notebooks only as a tool—not as your whole application. Review basic probability, vectors, and train/test splits.", "A clean starter repo with Python, linting, tests, README, and a small data-loading script.", ["Python tutorial", "NumPy learning"]],
+          ["Python for production data work", "Practice typing, modules, exceptions, packaging, logging, and pytest. Read CSV/JSON data with pandas and write small functions you can test.", "A tested Python package that validates and summarizes a public dataset.", ["pandas getting started", "FastAPI tutorial"]],
+          ["Statistics and ML evaluation", "Learn features/labels, leakage, baseline models, overfitting, classification vs regression, train/validation/test, precision/recall, and error analysis.", "A notebook or script comparing a simple baseline with one scikit-learn model and explaining the metric choice.", ["scikit-learn getting started"]],
+          ["Build and serve a small ML model", "Train a modest public-data model; package preprocessing and inference; expose a typed API. Keep the model simple and make results reproducible.", "Project 1: a tested local prediction API with model limitations documented.", ["scikit-learn getting started", "FastAPI tutorial"]]
+        ]
+      },
+      {
+        title: "Deep learning and LLM application basics", period: "Month 2 · Models, embeddings, and useful LLM APIs",
+        weeks: [
+          ["Understand neural networks", "Learn tensors, layers, loss, gradient descent, epochs, and inference conceptually. Train a small model; you do not need to derive every equation.", "A tiny PyTorch training run with a clear train/validation curve and notes on overfit.", ["PyTorch tutorials"]],
+          ["Understand transformers and tokenization", "Learn tokens, context windows, attention at a high level, embeddings, inference parameters, and why model outputs can vary.", "A short explainer plus a script comparing token counts and outputs for several inputs.", ["Hugging Face Learn"]],
+          ["Use a hosted model API safely", "Build a backend-only model call with schema validation, timeouts, bounded retries, error handling, and secret management. Compare at least two model options if practical.", "A small API feature with tests for invalid input, timeout, provider error, and usage/cost logging.", ["OpenAI API docs"]],
+          ["Explore local inference and model trade-offs", "Run a compact model locally if your hardware permits. Compare a local model and hosted API for quality, latency, setup, privacy, and cost; avoid assuming one is always better.", "A one-page experiment report with the same test prompts and measured trade-offs.", ["Ollama embeddings", "Hugging Face Learn"]]
+        ]
+      },
+      {
+        title: "RAG, evaluation, and reliability", period: "Months 3–4 · Make answers grounded and measurable",
+        weeks: [
+          ["Build a basic retrieval pipeline", "Ingest public documents, split them, create embeddings, store them in a vector index, retrieve relevant chunks, and return source references.", "A command-line question-answering prototype with visible retrieved passages.", ["Ollama embeddings"]],
+          ["Improve retrieval and answer quality", "Create a small representative question set. Inspect misses; tune chunk size, overlap, metadata filters, and retrieval count. Separate retrieval quality from answer quality.", "A baseline evaluation table with examples of correct, incorrect, and unanswerable questions.", ["Evaluation guide"]],
+          ["Add grounded responses and abstention", "Require evidence in the prompt, return citations tied to retrieved sources, and define when to say “I don’t know.” Test unsupported and ambiguous questions.", "RAG project with source-linked answers and an explicit abstention test.", ["OpenAI API docs"]],
+          ["Add persistence and access boundaries", "Use a database for records and a vector extension/index as appropriate. Model tenant/source permissions; ensure retrieval cannot cross user boundaries.", "A tested retrieval layer with authorization-filter tests and a data-flow diagram.", ["FastAPI tutorial"]],
+          ["Threat model the LLM feature", "Study prompt injection, sensitive data exposure, unsafe outputs, excessive agency, and supply-chain risks. Treat documents and model output as untrusted.", "A threat model and regression tests for malicious document text, access controls, and unsafe requests.", ["OWASP Top 10 for LLM apps"]],
+          ["Instrument and measure", "Track latency, errors, token use, retrieval results, model/provider version, and evaluation outcomes. Avoid storing sensitive prompts by default.", "A dashboard or local report showing quality, p50/p95 latency, failures, and estimated cost.", ["Evaluation guide"]],
+          ["Make the app resilient", "Set request limits, timeouts, bounded retries, graceful degradation, health checks, and clear user-facing error states. Test provider failure.", "A failure drill demonstrating that the service degrades safely and recovers.", ["FastAPI tutorial"]],
+          ["Finish and document your RAG project", "Clean the code, add reproducible setup, seeded evaluation data, deployment instructions, limitations, and a short demo. Get a peer review.", "Project 2: public portfolio repo that another engineer can run and evaluate.", ["Docker getting started"]]
+        ]
+      },
+      {
+        title: "Production deployment, architecture, and job search", period: "Months 5–6 · Operate it, explain it, and apply",
+        weeks: [
+          ["Containers and local production setup", "Containerize the API, use non-root images and environment-based configuration, and run dependencies locally. Keep secrets outside the image.", "A Docker Compose development environment and documented health checks.", ["Docker getting started"]],
+          ["Choose one cloud and deploy", "Pick AWS, Azure, or Google Cloud based on job targets. Learn its identity, networking, secrets, logging, and model service basics; deploy a small, budget-capped demo.", "A reachable demo with a documented cloud diagram, budget alert, and teardown steps.", ["Amazon Bedrock docs", "Azure AI services", "Vertex AI docs"]],
+          ["Infrastructure as code and CI/CD", "Describe the minimum app infrastructure as code. Add automated tests and a pipeline that builds and deploys a controlled change.", "A repeatable deployment from a clean environment with a rollback note.", ["Terraform tutorials"]],
+          ["Observability, SLOs, and incident response", "Define user-centered service objectives. Add structured logs/metrics/traces, alert on actionable symptoms, and write a short incident runbook.", "A runbook plus a simulated provider outage or latency incident and recovery steps.", ["Docker getting started"]],
+          ["Performance and cost engineering", "Run a small load test; measure latency and throughput; estimate per-request costs. Test caching only with privacy-safe keys and appropriate freshness rules.", "A before/after report with bottleneck, cost estimate, and realistic capacity limits.", ["OpenAI API docs"]],
+          ["Secure the demo and validate operations", "Review authorization, rate limits, secret rotation, data retention, dependency updates, and abuse cases. Remove public access if you cannot maintain it.", "A deployment checklist and security review notes; no real client data in the portfolio demo.", ["OWASP Top 10 for LLM apps"]],
+          ["Portfolio, CV, and interview practice", "Tailor your CV to actual roles. Practice Python/API coding, ML/LLM fundamentals, architecture trade-offs, and explaining failures honestly.", "Two polished project write-ups, updated CV, and at least three timed mock interviews.", ["Hugging Face Learn"]],
+          ["Capstone and applications", "Polish a client-style end-to-end feature. Ask an engineer to review it; fix one meaningful issue. Apply to a targeted set of roles and track feedback.", "Project 3: demo, architecture, evaluation, cost, risk, runbook, and a concise project presentation.", ["Docker getting started", "OWASP Top 10 for LLM apps"]]
+        ]
+      }
+    ];
+
+    const roadmapContent = document.getElementById("roadmapContent");
+    const progressKey = "ai-roadmap-v1";
+    const state = JSON.parse(localStorage.getItem(progressKey) || "{}");
+    const resourceUrls = {
+      "Python tutorial": "https://docs.python.org/3/tutorial/",
+      "NumPy learning": "https://numpy.org/learn/",
+      "pandas getting started": "https://pandas.pydata.org/docs/getting_started/",
+      "scikit-learn getting started": "https://scikit-learn.org/stable/getting_started.html",
+      "PyTorch tutorials": "https://pytorch.org/tutorials/",
+      "Hugging Face Learn": "https://huggingface.co/learn",
+      "FastAPI tutorial": "https://fastapi.tiangolo.com/tutorial/",
+      "OpenAI API docs": "https://platform.openai.com/docs/overview",
+      "Ollama embeddings": "https://ollama.com/blog/embedding-models",
+      "Evaluation guide": "https://platform.openai.com/docs/guides/evals",
+      "OWASP Top 10 for LLM apps": "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "Docker getting started": "https://docs.docker.com/get-started/",
+      "Terraform tutorials": "https://developer.hashicorp.com/terraform/tutorials",
+      "Amazon Bedrock docs": "https://docs.aws.amazon.com/bedrock/",
+      "Azure AI services": "https://learn.microsoft.com/azure/ai-services/",
+      "Vertex AI docs": "https://cloud.google.com/vertex-ai/docs"
+    };
+
+    let weekNumber = 0;
+    phases.forEach((phase, phaseIndex) => {
+      const wrapper = document.createElement("section");
+      wrapper.className = "phase";
+      const heading = document.createElement("div");
+      heading.className = "phase-heading";
+      heading.innerHTML = `<span class="phase-number">${phaseIndex + 1}</span><div><h3>${phase.title}</h3><p>${phase.period}</p></div>`;
+      const weeks = document.createElement("div");
+      weeks.className = "weeks";
+      phase.weeks.forEach(([title, detail, deliverable, resources]) => {
+        weekNumber += 1;
+        const key = `week-${weekNumber}`;
+        const card = document.createElement("article");
+        card.className = "week";
+        const checked = Boolean(state[key]);
+        if (checked) card.classList.add("done");
+        const links = resources.map(name => `<a href="${resourceUrls[name]}" target="_blank" rel="noopener">${name}</a>`).join("");
+        card.innerHTML = `
+          <div class="week-top"><div><div class="week-label">Week ${weekNumber}</div><h4>${title}</h4></div><span class="pill">${phaseIndex + 1} / 4</span></div>
+          <p>${detail}</p>
+          <div class="deliverable"><strong>Output:</strong> ${deliverable}</div>
+          <div class="resource-list">${links}</div>
+          <label><input type="checkbox" data-key="${key}" ${checked ? "checked" : ""}> I can show this milestone</label>`;
+        weeks.appendChild(card);
+      });
+      wrapper.append(heading, weeks);
+      roadmapContent.appendChild(wrapper);
+    });
+
+    function updateProgress() {
+      const completed = Array.from({length: 24}, (_, index) => state[`week-${index + 1}`]).filter(Boolean).length;
+      const percent = Math.round(completed / 24 * 100);
+      document.getElementById("progressText").textContent = `${completed} of 24 weekly milestones complete`;
+      document.getElementById("progressNumber").textContent = `${percent}%`;
+      const fill = document.getElementById("progressFill");
+      fill.style.width = `${percent}%`;
+      fill.parentElement.setAttribute("aria-valuenow", String(percent));
+    }
+    document.addEventListener("change", event => {
+      const input = event.target;
+      if (!(input instanceof HTMLInputElement) || input.type !== "checkbox") return;
+      const key = input.dataset.key;
+      if (!key) return;
+      state[key] = input.checked;
+      localStorage.setItem(progressKey, JSON.stringify(state));
+      const card = input.closest(".week");
+      if (card) card.classList.toggle("done", input.checked);
+      updateProgress();
+    });
+    document.getElementById("resetProgress").addEventListener("click", () => {
+      if (!window.confirm("Clear all roadmap and readiness checkmarks saved in this browser?")) return;
+      Object.keys(state).forEach(key => delete state[key]);
+      localStorage.removeItem(progressKey);
+      document.querySelectorAll('input[type="checkbox"]').forEach(input => { input.checked = false; });
+      document.querySelectorAll(".week.done").forEach(card => card.classList.remove("done"));
+      updateProgress();
+    });
+    document.getElementById("hours").addEventListener("change", event => {
+      const hours = Number(event.target.value);
+      const note = hours < 12
+        ? `At ${hours} hours/week, stretch this roadmap to roughly 8–9 months; keep the projects and extend the calendar.`
+        : hours >= 20
+          ? "At 20+ hours/week, use extra time for deeper evaluation, peer review, and interview practice—not more frameworks."
+          : `At ${hours} hours/week, aim for one milestone each week; adjust project depth to your available time.`;
+      document.getElementById("hoursNote").textContent = note;
+    });
+    updateProgress();
+  </script>
+</body>
+</html>
